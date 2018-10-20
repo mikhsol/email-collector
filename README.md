@@ -4,11 +4,12 @@ Simple backend application to verify and collect customers emails.
 
 The app working in two phases:
 
-* handle `POST` request with `email` and `name` fields. Calculate hash from email and secret,
-create verification link, send email to recipient with verification link using AWS SES.
+* `notify/` -- handle `POST` request with `email` and `name` fields.
+Calculate hash from email and secret, create verification link, send
+email to recipient with verification link using AWS SES.
 
-* handle `POST` request with  `email`, `name` and `p` fields. Calculate hash from email
-and secret, compare with  paylode. On success store data in database.
+* `customer/` -- handle `POST` request with  `email`, `name` and `p` fields. Calculate
+hash from email and secret, compare with  paylode. On success store data in database.
 
 Use sqlite to store data.
 
