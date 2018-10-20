@@ -4,3 +4,5 @@
 .iml
 
 *.sqlite3
+
+email-collector
