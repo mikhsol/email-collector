@@ -6,9 +6,9 @@ import (
 )
 
 type customer struct {
-	ID    int    'json:"id"'
-	Name  string 'json:"name"'
-	Email string 'json:"email"'
+	ID    int    "json:'id'"
+	Name  string "json:'name'"
+	Email string "json:'email'"
 }
 
 func (c *customer) getCustomer(db *sql.DB) error {
