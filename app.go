@@ -26,6 +26,7 @@ const tableCreationQuery = `CREATE TABLE IF NOT EXISTS customers (
   email varchar(128) NOT NULL)`
 
 func (a *App) Initialize(dbname string) {
+	log.SetOutput(os.Stdout)
 	var err error
 
 	a.DB, err = sql.Open("sqlite3", dbname)
@@ -39,6 +40,7 @@ func (a *App) Initialize(dbname string) {
 
 	a.Router = mux.NewRouter()
 	a.initializeRoutes()
+	log.Println("Application have been initialized")
 }
 
 func (a *App) initializeRoutes() {
@@ -47,6 +49,7 @@ func (a *App) initializeRoutes() {
 }
 
 func (a *App) Run(addr string) {
+	log.Println("Application started")
 	log.Fatal(http.ListenAndServe(":8000", a.Router))
 }
 
