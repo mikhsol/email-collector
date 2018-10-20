@@ -109,3 +109,21 @@ func TestCreateCustomerWrongHash(t *testing.T) {
 	}
 }
 
+func TestNotifyCustomer(t *testing.T) {
+	clearTable()
+	payload := []byte(fmt.Sprintf(`{"name":"%s","email":"%s"}`,
+		//"test user", "test@email.com"))
+		"test user", "miksolodovnikov@gmail.com"))
+
+	req, _ := http.NewRequest("POST", "/notify", bytes.NewBuffer(payload))
+
+	response := executeRequest(req)
+	checkResponseCode(t, http.StatusOK, response.Code)
+
+	var m map[string]interface{}
+	json.Unmarshal(response.Body.Bytes(), &m)
+
+	if len(m) != 0 {
+		t.Errorf("Expected customer no payload. Got '%v'", m)
+	}
+}
